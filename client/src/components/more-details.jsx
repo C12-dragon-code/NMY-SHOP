@@ -31,7 +31,7 @@ export default function moreDetails (props){
 
     return (
         <div className="card">
-              <div>
+              <div onClick={() =>props.ChangeView("signin")}>
               <Card className={classes.root}>
                 <CardActionArea>
                   <CardMedia className={classes.media} image={props.product.url} id="prodImage" title="Contemplative Reptile" />

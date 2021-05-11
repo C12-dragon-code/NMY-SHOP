@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Pro from './components/Pro.jsx'
 import MoreDetails from './components/more-details.jsx'
+import SignIn from './components/sinIn.jsx'
+import SignUp from './components/sinup.jsx'
+
 export default class Index extends Component {
     constructor(props) {
         super(props)
@@ -25,7 +28,13 @@ export default class Index extends Component {
         return <Pro ChangeView={this.ChangeView}/>
     }
     if (view === "details") {
-        return <MoreDetails product={this.state.product} />
+        return <MoreDetails product={this.state.product} ChangeView={this.ChangeView}/>
+    }
+    if (view === "signin") {
+        return <SignIn ChangeView={this.ChangeView} />
+    }
+    if (view === "signup") {
+        return <SignUp ChangeView={this.ChangeView} />
     }
     }
     render() {
