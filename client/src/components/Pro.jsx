@@ -49,7 +49,7 @@ export default function Pro (props){
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick ={()=>console.log("clicked")}>
+                  <Button size="small" color="primary" onClick ={()=>props.detail()}>
                     more details
                   </Button>
              
