@@ -4,11 +4,15 @@ import Pro from './components/Pro.jsx'
 export default class Index extends Component {
     constructor(props) {
         super(props)
-        // this.state={
-        //     Component:'',
-        // }
+         this.state={
+             component:'',
+         }
     }
-
+    // detail(){
+    //     this.setState({
+    //         component:
+    //     })
+    
     render() {
         return (
             <div>
