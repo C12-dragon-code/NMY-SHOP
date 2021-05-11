@@ -6,9 +6,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from '@material-ui/core/Typography';
 import data from '../../../data.json'
+
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -26,36 +26,32 @@ const useStyles = makeStyles({
       flexGrow: 1,
     }
   });
-export default function Pro (props){
+export default function moreDetails (props){
   const classes = useStyles();
 
     return (
         <div className="card">
-          {data.map((product, i) => {
-            return (
-              <div key = {i}>
+              <div>
               <Card className={classes.root}>
                 <CardActionArea>
-                  <CardMedia className={classes.media} image={product.url} id="prodImage" title="Contemplative Reptile" />
+                  <CardMedia className={classes.media} image={props.product.url} id="prodImage" title="Contemplative Reptile" />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {product.name}
+                      {props.product.name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                      {product.description}
-                    </Typography>
-              
+                      {props.product.description}
+                    </Typography>  
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {props.product.prices}
+                    </Typography>           
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick ={()=>props.detail()}>
-                    more details
-                  </Button>
-             
                 </CardActions>
               </Card></div>
             );
-          })}
+         
      
                   
         </div>
