@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
+import Pro from './components/Pro.jsx'
 export default class Index extends Component {
+    constructor(props) {
+        super(props)
+        
+    }
     render() {
         return (
             <div>
-                <h1>
-                    hello kais
-                </h1>
+              <Pro/>
             </div>
         )
     }
