@@ -48,7 +48,7 @@ export default function Pro (props){
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="small" color="primary" onClick ={()=>props.detail()}>
+                  <Button size="small" color="primary" onClick ={()=>props.ChangeView("details",product)}>
                     more details
                   </Button>
              
