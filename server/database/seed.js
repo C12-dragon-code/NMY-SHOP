@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var newUser =require("../../user.json")
 const users = require("../src/models/user-model.js")
 
-mongoose.connect("mongodb://localhost/NMYShop");
+mongoose.connect("mongodb+srv://nassir:nassir@cluster0.htrhr.mongodb.net/test");
 
 var seedUser=(user)=>{
     users.insertMany(user,(err,res)=>{

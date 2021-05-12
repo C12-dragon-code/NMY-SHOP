@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const db = require("../db/connection.js")
 const bcrypt = require("bcrypt");
 const userSchema = new mongoose.Schema({
   name: String,
@@ -17,4 +18,20 @@ userSchema.pre('save', async function (next) {
   }
 })
 
+
 module.exports = mongoose.model("user", userSchema);
+// var User = mongoose.model("user", userSchema)
+// async function create(){const newUser = new User({
+//   name: "nassir",
+//   email: "nassir@gmail.com",
+//   password: "password",
+// });
+// try {
+//   const saveUser = await newUser.save();
+//   console.log(saveUser);
+//   // res.json(saveUser);
+// } catch (error) {
+//   console.log(error);
+//   // res.json(error);
+// }}
+// create()

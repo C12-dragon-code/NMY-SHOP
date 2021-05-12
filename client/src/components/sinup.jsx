@@ -74,6 +74,7 @@ export default function SignUp(props) {
       email: state.email,
       password: state.password,
     };
+    console.log(userToAdd);
     axios
       .post("/api/NMYShop/createUser", userToAdd)
       .then((response)=>{
