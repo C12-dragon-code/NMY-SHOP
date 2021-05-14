@@ -31,11 +31,11 @@ export default function ButtonAppBar(props) {
             color="inherit"
             aria-label="menu"
           ></IconButton>
-          <Typography variant="h4" className={classes.title} onClick={() =>props.ChangeView("details")}>
+          <Typography variant="h4" className={classes.title} onClick={() =>props.changeView("details")}>
             N-M-Y Shop
           </Typography>
-          <Button color="inherit" onClick={() =>props.ChangeView("signin")}>Login</Button>
-          <Button color="inherit" onClick={() =>props.ChangeView("signup")}>Sign Up</Button>
+          <Button color="inherit" onClick={() =>props.changeView("signin")}>Login</Button>
+          
         </Toolbar>
       </AppBar>
     </div>

@@ -1,7 +1,8 @@
 // In this file we will have the schema for the product
 const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema({
+    email: String,
   url: String,
   name: String,
   description: String,
@@ -9,4 +10,4 @@ const productSchema = new mongoose.Schema({
   view:Number,
 });
 
-module.exports = mongoose.model("product", productSchema);
+module.exports = mongoose.model("order", OrderSchema);

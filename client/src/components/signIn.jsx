@@ -6,10 +6,15 @@ import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Toolbar from "@material-ui/core/Toolbar";
+import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import IconButton from "@material-ui/core/IconButton";
+import axios from "axios";
+import Product from "./product.jsx";
+import Swal from 'sweetalert2'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -50,11 +55,39 @@ export default function SignIn(props) {
   const handelChange = function (event) {
     const { name, value } = event.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
-    console.log(state);
   };
 
   const handleClick = function () {
-   console.log("hellows");
+    var obj = { email: state.email, password: state.password };
+    // console.log(state.name , state.password)
+    axios
+      .post("/api/NMYShop/login", obj)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "admin") {
+          localStorage.setItem("token" ,"admin")
+          return props.changeView("admin");
+        } else {
+          if (res.data.message === "success") {
+            console.log('im in');
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", obj.email);
+
+            // console.log(localStorage.token);
+            return props.changeView("pro");
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong! Email or password incorrect . Please try again',
+          
+            })
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -95,7 +128,7 @@ export default function SignIn(props) {
             <Button
               fullWidth
               variant="contained"
-              color="secondary"
+              color="primary"
               className={classes.submit}
               onClick={handleClick}
             >
@@ -105,7 +138,7 @@ export default function SignIn(props) {
               <Grid item>
                 <Link
                   variant="body2"
-                  onClick={() => props.ChangeView("signup")}
+                  onClick={() => props.changeView("signup")}
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>
