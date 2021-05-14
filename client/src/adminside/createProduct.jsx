@@ -51,7 +51,7 @@ export default function SignUp() {
   const [state, setState] = useState({
     uptodate : { url: "",
     name: "",
-    view: "",
+    stock: "",
     description: "",
     prices: "",}
   });
@@ -64,7 +64,7 @@ export default function SignUp() {
             uptodate: {
               url: e.target.value,
               name: state.uptodate.name,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
@@ -75,18 +75,18 @@ export default function SignUp() {
             uptodate: {
               url: state.uptodate.url,
               name: e.target.value,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
           });
           break;
-        case "view":
+        case "stock":
           setState({
             uptodate: {
               url: state.uptodate.url,
               name: state.uptodate.name,
-              view: e.target.value,
+              stock: e.target.value,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
@@ -97,7 +97,7 @@ export default function SignUp() {
             uptodate: {
               url: state.uptodate.url,
               name: state.uptodate.name,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: e.target.value,
               prices: state.uptodate.prices
             },
@@ -108,7 +108,7 @@ export default function SignUp() {
                 uptodate: {
                   url: state.uptodate.url,
                   name: state.uptodate.name,
-                  view: state.uptodate.view,
+                  stock: state.uptodate.stock,
                   description: state.uptodate.description,
                   prices: e.target.value
                 },

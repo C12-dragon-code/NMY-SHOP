@@ -118,7 +118,7 @@ export default function PersistentDrawerLeft(props) {
             noWrap
             onClick={() => window.location.reload()}
           >
-            Vape Store
+          N-M-Y Shop
           </Typography>
         </Toolbar>
       </AppBar>

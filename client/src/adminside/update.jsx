@@ -25,7 +25,7 @@ export default function BasicTextFields(props) {
     uptodate: {
       url: props.product.url,
       name: props.product.name,
-      view: props.product.view,
+      stock: props.product.stock,
       description: props.product.description,
       prices: props.product.prices,
     },
@@ -56,7 +56,7 @@ export default function BasicTextFields(props) {
             uptodate: {
               url: e.target.value,
               name: state.uptodate.name,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
@@ -67,18 +67,18 @@ export default function BasicTextFields(props) {
             uptodate: {
               url: state.uptodate.url,
               name: e.target.value,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
           });
           break;
-        case "view":
+        case "stock":
           setState({
             uptodate: {
               url: state.uptodate.url,
               name: state.uptodate.name,
-              view: e.target.value,
+              stock: e.target.value,
               description: state.uptodate.description,
               prices: state.uptodate.prices
             },
@@ -89,7 +89,7 @@ export default function BasicTextFields(props) {
             uptodate: {
               url: state.uptodate.url,
               name: state.uptodate.name,
-              view: state.uptodate.view,
+              stock: state.uptodate.stock,
               description: e.target.value,
               prices: state.uptodate.prices
             },
@@ -100,7 +100,7 @@ export default function BasicTextFields(props) {
                 uptodate: {
                   url: state.uptodate.url,
                   name: state.uptodate.name,
-                  view: state.uptodate.view,
+                  stock: state.uptodate.stock,
                   description: state.uptodate.description,
                   prices: e.target.value
                 },
@@ -145,9 +145,9 @@ export default function BasicTextFields(props) {
           label="Stock"
           variant="filled"
           name="view"
-          value={state.uptodate.view}
+          value={state.uptodate.stock}
           onChange={(e) => handleChange(e)}
-          autoComplete="view"
+          autoComplete="stock"
         />
         <TextField
           id="filled-basic"
