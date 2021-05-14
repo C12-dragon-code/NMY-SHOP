@@ -1,50 +1,97 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import Pro from './components/Pro.jsx'
-import MoreDetails from './components/more-details.jsx'
-import SignIn from './components/sinIn.jsx'
-import SignUp from './components/sinup.jsx'
-import Nav from './components/navBar/navBar.jsx'
-export default class Index extends Component {
-    constructor(props) {
-        super(props)
-         this.state={
-             view:"pro",
-             product:null,
-         }
-         this.ChangeView=this.ChangeView.bind(this)
-         this.renderView=this.renderView.bind(this)
+import React from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import Product from "./components/product.jsx";
+import Signup from "./components/signUp.jsx";
+import Signin from "./components/signIn.jsx";
+import NavBar from "./navbar/navBar.jsx";
+import Pro from "./components/pro.jsx";
+import Admin from "./adminside/index.jsx";
+import Prodetail from "./components/details.jsx";
+import Navsignup from "./navbar/navsignup.jsx";
+import Navsignin from "./navbar/navsignin.jsx";
+import Navbarprod from './navbar/navbarprod.jsx';
+import Userprod from "./userside/product.jsx";
+import Userdetails from "./userside/productdetails.jsx";
+import ShowOrders from './userside/showOrders.jsx'
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      view: "details",
+      product:null,
+    };
+  }
+  componentDidMount() {
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "admin") {
+      this.setState({ view: "pro" });
+    } else if (localStorage.getItem("token") === "admin"){
+      this.setState({ view: "admin" });
     }
-    ChangeView(view, product) {
-        this.setState({
-            view: view,
-            product: product
+    this.fetchData();
+  }
 
-        })
-    }
-    renderView() {
-    const  view = this.state.view;
-    if (view === "pro") {
-        return <div><Nav ChangeView={this.ChangeView}/><Pro ChangeView={this.ChangeView}/></div>
-    }
+  fetchData() {
+    axios.get("/api/NMYShop/products").then((res) => {
+      this.setState({ data: res.data });
+    });
+  }
+
+  changeView(view,product) {
+    this.setState({
+      view: view,
+      product: product,
+    });
+  }
+
+  renderView() {
+    const { view } = this.state;
     if (view === "details") {
-        return <div><Nav ChangeView={this.ChangeView}/><MoreDetails product={this.state.product} ChangeView={this.ChangeView}/></div> 
-    }
-    if (view === "signin") {
-        return <SignIn ChangeView={this.ChangeView} />
+      return <div><NavBar changeView={(data) => this.changeView(data)} /> <Product data={this.state.data} changeView={(view,product) => this.changeView(view,product) } /></div>;
     }
     if (view === "signup") {
-        return <SignUp ChangeView={this.ChangeView} />
+      return <div> <Navsignup changeView={(data) => this.changeView(data)}/><Signup changeView={(view) => this.changeView(view)} /></div>;
     }
-  
+    if (view === "signin") {
+      return <div><Navsignin changeView={(data) => this.changeView(data)}/><Signin changeView={(view) => this.changeView(view)} /></div>;
     }
-    render() {
+    if (view === "pro") {
+      return <div> <Navbarprod changeView={(data) => this.changeView(data)}/> <Pro data={this.state.data} changeView={(view,product) => this.changeView(view,product)} product={this.state.product}  /></div>;
+    }
+    if (view === "admin") {
+      return <div><Admin changeView={(view,product) => this.changeView(view,product)} /></div>;
+    }
+    if (view === "Prodetail") {
+      return <div><NavBar changeView={(data) => this.changeView(data)}/><Prodetail changeView={(view,product) => this.changeView(view,product) } product={this.state.product} /></div>;
+    }
+    if (view === "userprod") {
+      return <div> <Navbarprod changeView={(data) => this.changeView(data)}/> <Userdetails changeView={(view,product) => this.changeView(view,product) } data={this.state.data} product={this.state.product} /></div>;
+    }
+    if (view === "showorder") {
+      return <div><Navbarprod changeView={(data) => this.changeView(data)}/> <ShowOrders  changeView={(view,product) => this.changeView(view,product)} product={this.state.product}data={this.state.data}  /></div>;
+    }
+  }
+
+  render() {
+    {
+    
+      if (this.state.view !== "admin") {
         return (
-            <div>
-              {this.renderView()}
-            </div>
-        )
+          <div>
+            
+            <div>{this.renderView()}</div>
+          </div>
+        );
+      }
+      return (
+        <div>
+          
+          <div>{this.renderView()}</div>
+        </div>
+      );
+    }
     }
 }
 
-ReactDOM.render(<Index />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));

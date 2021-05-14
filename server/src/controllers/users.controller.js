@@ -1,17 +1,18 @@
-// here we will create our scram funtionvar mongoose = require("mongoose");
+var mongoose = require("mongoose");
 // const UserModel = require("../database/userModel.js");
 // const ProductModel = require("../database/productModel.js");
-const ProductModel = require("../models/product-model.js");
-
 const bcrypt = require("bcrypt");
 // const { signupValidation, loginValidation } = require("../auth");
 const jwt = require("jsonwebtoken");
 // const OrderModel= require("../database/order.js")
-module.exports.findAll = async function (req, res) {
+const OrderModel= require("../models/order-models.js")
+
+module.exports.cOrder = async function (req, res) {
+    console.log(req.body)
     try {
-      const products = await ProductModel.find({});
-      res.send(products);
-    } catch (error) {
-      res.send(error);
+      const order = await OrderModel.create(req.body);
+      res.send(order);
+    } catch (err) {
+      res.send(err);
     }
   };

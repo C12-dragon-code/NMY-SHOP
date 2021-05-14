@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -14,9 +14,8 @@ import Typography from '@material-ui/core/Typography';
 // import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
-import Navbarprod from "../navbar/navbarprod.jsx"
-import Swal from 'sweetalert2';
-import $ from "jquery";
+
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -36,25 +35,6 @@ const useStyles = makeStyles({
 });
 export default function MediaCard(props) {
   const classes = useStyles();
-  var order = []
-const addTopanie = (product) =>{
-  console.log(product)
-  if(localStorage.getItem("order")){
-    var orderParse = localStorage.getItem( "order") 
-    var email = localStorage.getItem("user")
-    var parseEmail = JSON.stringify(email)
-    console.log(parseEmail);
-    order = JSON.parse(orderParse)
-    order.push([product.name, product.prices, product.url,parseEmail])
-  localStorage.setItem("order", JSON.stringify(order))
-  } else { 
-    order.push([product.name, product.prices, product.url])
-    localStorage.setItem("order", JSON.stringify(order))
-  }
-
-}
-      
-
   return (
     <div className="card">
       {props.data.map((product, i) => {
@@ -73,24 +53,16 @@ const addTopanie = (product) =>{
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button size="small" color="primary" onClick ={()=>props.changeView("userprod",product,order)}>
+              <Button size="small" color="primary" onClick ={()=>props.changeView("userprod",product)}>
                 more details
               </Button>
-              <Button size="small" color="primary" onClick={()=>{
-                 addTopanie(product)
-                 Swal.fire({text: "Order has been passed! Please confirm it through the shopping cart"}).then(function(){ 
-                  location.reload();
-                  })
-                 
-               }}>
-                order now!!!!!!
+              <Button size="small" color="primary" onClick={()=>props.changeView("userprod")}>
+                order now!
               </Button>
             </CardActions>
           </Card></div>
         );
       })}
- 
-              
     </div>
   );
 }
