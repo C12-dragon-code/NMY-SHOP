@@ -86,7 +86,7 @@ const handleSubmit = (e) => {
         Swal.fire({
           position: 'middle',
           icon: 'success',
-          title: 'Your work has been saved',
+          title: 'Your account has been saved',
           showConfirmButton: false,
           timer: 1500
         }).then(()=>{props.changeView("signin")})

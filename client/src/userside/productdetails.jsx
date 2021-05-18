@@ -50,7 +50,7 @@ const handleClick =()=>{
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="secondary">
+        <Button size="small" color="primary">
           {props.product.prices}
         </Button>
         <Button size="small" color="primary" onClick={handleClick}>
