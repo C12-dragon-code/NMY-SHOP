@@ -22,6 +22,7 @@ export default class App extends React.Component {
       view: "details",
       product:null,
     };
+    this.changeView=this.changeView.bind(this)
   }
   componentDidMount() {
     if (localStorage.getItem("token") && localStorage.getItem("token") !== "admin") {
